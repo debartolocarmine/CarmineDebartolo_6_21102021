@@ -4,7 +4,7 @@
 const express = require('express');
 // importer mongoose. Mongoose est un package qui facilite les interactions avec notre base de données MongoDB grâce à des fonctions.
 const mongoose = require('mongoose');
-
+var helmet = require('helmet');
 // Variable d'environnement
 require('dotenv').config();
 
@@ -22,6 +22,23 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@${p
 
 // Constante app = mon application express
 const app = express();
+
+// Helmet vous aide à protéger votre application de certaines des vulnérabilités bien connues du Web en configurant de manière appropriée des en-têtes HTTP.
+// http://expressjs.com/fr/advanced/best-practice-security.html#utilisez-helmet
+app.use(helmet());
+
+// Set header
+// Ces headers de requêtes permettent :
+app.use((req, res, next) => {
+    //d'accéder à notre API depuis n'importe quelle origine ( '*' ) ;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  //d'ajouter les headers mentionnés aux requêtes envoyées vers notre API (Origin ,X-Requested-With , etc.) ; 
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  //d'envoyer des requêtes avec les méthodes mentionnées ( GET ,POST , etc.).
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+   // Si tout va bien on passe la requête avec next() au prochain middleware.
+  next();
+});
 
 //express.json()est une méthode intégrée à express pour reconnaître l'objet de demande entrant en tant qu'objet JSON .
 // Cette méthode est appelée en tant que middleware dans votre application à l'aide du code :app.use(express.json()).

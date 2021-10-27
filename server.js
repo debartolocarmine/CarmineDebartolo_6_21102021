@@ -6,6 +6,9 @@ const http = require('http');
 // importer l'application express avec la méthode require de Node pour importer le fichier app.js.
 const app = require('./app');
 
+const cors = require('cors');
+app.use(cors()); 
+
 // la fonction normalizePort renvoie un port valide, qu'il soit fourni sous la forme d'un numéro ou d'une chaîne ;
 const normalizePort = val => {
     const port = parseInt(val, 10);
