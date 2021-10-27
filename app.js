@@ -8,12 +8,17 @@ const mongoose = require('mongoose');
 // Variable d'environnement
 require('dotenv').config();
 
+// Route
+const userRoute = require('./routes/userRoute');
+
 // Connection à la base de données
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`,
-  { useNewUrlParser: true,
-    useUnifiedTopology: true })
-  .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch((err) => console.log('Connexion à MongoDB échouée !', err));
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(() => console.log('Connexion à MongoDB réussie !'))
+    .catch((err) => console.log('Connexion à MongoDB échouée !', err));
 
 // Constante app = mon application express
 const app = express();
@@ -21,6 +26,10 @@ const app = express();
 //express.json()est une méthode intégrée à express pour reconnaître l'objet de demande entrant en tant qu'objet JSON .
 // Cette méthode est appelée en tant que middleware dans votre application à l'aide du code :app.use(express.json()).
 app.use(express.json());
+
+// J'enregristre la route pour l'authentification
+app.use('/api/auth', userRoute);
+
 // j'exporte mon application express pour povoir y accéder depuis les autre fichiers du projet, notamment le serveur Node.
 module.exports = app;
 
