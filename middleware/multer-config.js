@@ -1,4 +1,3 @@
-
 const multer = require('multer');
 
 //constante dictionnaire de type MIME pour résoudre l'extension de fichier
