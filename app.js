@@ -10,6 +10,7 @@ require('dotenv').config();
 
 // Route
 const userRoute = require('./routes/userRoute');
+const sauceRoute = require('./routes/sauceRoute');
 
 // Connection à la base de données
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`,
@@ -46,6 +47,8 @@ app.use(express.json());
 
 // J'enregristre la route pour l'authentification
 app.use('/api/auth', userRoute);
+// j'enregristre les routes pour la création des sauces
+app.use('/api/sauces', sauceRoute);
 
 // j'exporte mon application express pour povoir y accéder depuis les autre fichiers du projet, notamment le serveur Node.
 module.exports = app;
