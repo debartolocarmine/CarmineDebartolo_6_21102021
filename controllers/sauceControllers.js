@@ -27,7 +27,7 @@ exports.updateSauce = (req, res, next) => {
 	  .then(res.status(200).json({ message: "Sauce modifiée" }))
 	  .catch(error => res.status(400).json({ error }))
   } 
-  
+
   // deleteSauce
 exports.deleteSauce = (req, res, next) => {
 	Sauce.findOne({ _id: req.params.id })
@@ -41,3 +41,9 @@ exports.deleteSauce = (req, res, next) => {
 	  })
 	  .catch(error => res.status(500).json({ error }))
   } 
+  // getAllSauces
+exports.getAllSauces = (req, res, next) => {
+	Sauce.find()
+	  .then((sauces) => res.status(200).json(sauces))
+	  .catch((error) => res.status(404).json({ error }));
+  }; 
