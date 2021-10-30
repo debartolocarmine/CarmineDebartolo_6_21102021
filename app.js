@@ -4,6 +4,7 @@
 const express = require('express');
 // importer mongoose. Mongoose est un package qui facilite les interactions avec notre base de données MongoDB grâce à des fonctions.
 const mongoose = require('mongoose');
+const path = require('path');
 var helmet = require('helmet');
 // Variable d'environnement
 require('dotenv').config();
@@ -49,6 +50,8 @@ app.use(express.json());
 app.use('/api/auth', userRoute);
 // j'enregristre les routes pour la création des sauces
 app.use('/api/sauces', sauceRoute);
+// j'enregristre les routes pour la création des images
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // j'exporte mon application express pour povoir y accéder depuis les autre fichiers du projet, notamment le serveur Node.
 module.exports = app;
