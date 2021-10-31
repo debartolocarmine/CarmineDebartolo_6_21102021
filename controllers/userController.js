@@ -23,7 +23,7 @@ exports.signup = (req, res, next) => {
         .then(hash => {
             //nous créons un utilisateur et l'enregistrons dans la base de données
             const user = new User({
-                email: req.body.email,
+                email: cryptoEmail,
                 password: hash
             });
             user.save()
@@ -41,7 +41,7 @@ exports.signup = (req, res, next) => {
 exports.login = (req, res, next) => {
     const cryptoEmail = cryptojs.HmacSHA512(req.body.email, process.env.ASK_TOKEN).toString(cryp64);
     //nous utilisons notre modèle Mongoose pour vérifier que l'e-mail entré par l'utilisateur correspond à un utilisateur existant de la base de données.
-    User.findOne({ email: req.body.email })
+    User.findOne({ email: cryptoEmail })
         //dans le cas contraire, nous renvoyons une erreur 401 Unauthorized.
         //si l'e-mail correspond à un utilisateur existant, nous continuons 
         .then(user => {
