@@ -6,7 +6,7 @@ const passwordValidator = require('password-validator');
 const passwordSchema = new passwordValidator();
 // Wiki API-v5.0.0
 // https://github.com/tarunbatra/password-validator/wiki/API-v5.0.0
-// Ajoutez des propriétés à ce schéma .
+// Ajoutez des propriétés à ce schéma . Règles pour imposer la présence de...
 passwordSchema
     .is().min(5) // Longueur minimale
     .is().max(64) // Longueur maximale

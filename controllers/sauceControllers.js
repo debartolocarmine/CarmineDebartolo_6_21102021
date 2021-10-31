@@ -4,7 +4,7 @@ const Sauce = require("../models/sauce");
 const fs = require('fs');
 
 
-// createSauce
+// createSauce.Logique métier de la route POST.
 exports.createSauce = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce)
     delete sauceObject._id;
@@ -21,7 +21,7 @@ exports.createSauce = (req, res, next) => {
         .then(() => res.status(201).json({ message: "Sauce enregistrée" }))
         .catch((error) => res.status(400).json({ error }));
 };
-// updateSauce
+// updateSauce.Logique métier de la route PUT.
 exports.updateSauce = (req, res, next) => {
     const sauceObject = req.file ?
         {
@@ -34,7 +34,7 @@ exports.updateSauce = (req, res, next) => {
         .catch(error => res.status(400).json({ error }))
 };
 
-// deleteSauce
+// deleteSauce.Logique métier de la route DELETE.
 exports.deleteSauce = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id })
         .then(sauce => {
@@ -47,19 +47,19 @@ exports.deleteSauce = (req, res, next) => {
         })
         .catch(error => res.status(500).json({ error }))
 };
-// getAllSauces
+// getAllSauces.Logique métier de la route GET allSauces.
 exports.getAllSauces = (req, res, next) => {
     Sauce.find()
         .then((sauces) => res.status(200).json(sauces))
         .catch((error) => res.status(404).json({ error }));
 };
-// getOneSauce
+// getOneSauce.Logique métier de la route GET OneSauce.
 exports.getOneSauce = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id })
         .then(sauce => res.status(200).json(sauce))
         .catch(error => res.status(404).json({ error }));
 };
-// likeDislikeSauce
+// likeDislikeSauce.Logique métier de la route POST likeDislikeSauce.
 exports.likeDislikeSauce = (req, res, next) => {
     let like = req.body.like
     let userId = req.body.userId
