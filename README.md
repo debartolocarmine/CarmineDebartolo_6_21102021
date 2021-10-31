@@ -1,4 +1,4 @@
-# Backend
+# Backend PIIQUANTE
 Express Api server
 
 ## Backend and frontend
@@ -12,11 +12,22 @@ git clone https://github.com/OpenClassrooms-Student-Center/Web-Developer-P6.git 
 npm install
 npm start
 ```
+
 ### Backend
 ```bash
 mkdir backend && cd backend
 https://github.com/debartolocarmine/CarmineDebartolo_6_21102021.git .
+```
 
+#### Fichier .env
+Avant de démarer veuilez faire une copie du fichier .env.default en le renommant .env .
+Puis ouvrir ce nouveau fichier dans votre editeur de texte et renseigner les variables mongoose.
+```bash
+DB_NAME=<nom-db>
+DB_USER=<nom-user-db>
+DB_PWD=<password-db>
+DB_HOST=<host-db>
+ASK_TOKEN=ponzodfnzxueorcbYZ89356QSJDHPvbqdsouZ0S%psbhiqusugdvoqsgyfdivuqsg
 ```
 
 #### Dependencies
